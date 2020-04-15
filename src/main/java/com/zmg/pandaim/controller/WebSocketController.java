@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/websocket")
 public class WebSocketController {
 
-    // 跳转stomp websocket 页面
+    // 跳转stomp test 页面
     @RequestMapping(value = "/spring/stompSocket.do",method = RequestMethod.GET)
     public String toStompWebSocket(HttpSession session, HttpServletRequest request, Model model)
     {
@@ -21,7 +21,7 @@ public class WebSocketController {
         model.addAttribute("session_id",session.getId());
         System.out.println("跳转：" + session.getId());
         session.setAttribute("loginName",session.getId());
-        return "/test/springWebSocketStomp";
+        return "/test/springWebSocketStomp.html";
 
     }
 }

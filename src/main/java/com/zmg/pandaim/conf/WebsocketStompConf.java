@@ -27,7 +27,7 @@ public class WebsocketStompConf implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
                 // 端点
-        registry.addEndpoint("/stomp/websocketJS", "/stomp/websocket")
+        registry.addEndpoint("/stomp/websocketJS", "/stomp/test")
                 // 可跨域
                 .setAllowedOrigins("*")
                 // 自定义拦截器
@@ -47,7 +47,7 @@ public class WebsocketStompConf implements WebSocketMessageBrokerConfigurer {
         // 自定义调度，用于控制心跳
         ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
         taskScheduler.setPoolSize(1);
-        taskScheduler.setThreadNamePrefix("websocket-心跳-thread-");
+        taskScheduler.setThreadNamePrefix("test-心跳-thread-");
         // 初始化
         taskScheduler.initialize();
 
