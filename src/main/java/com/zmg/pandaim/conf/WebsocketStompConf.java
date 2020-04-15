@@ -1,5 +1,6 @@
 package com.zmg.pandaim.conf;
 
+import com.zmg.pandaim.manage.websocket.MyPrincipalHandshakeHandler;
 import com.zmg.pandaim.manage.websocket.WebsocketChannelInterceptor;
 import com.zmg.pandaim.manage.websocket.WebsocketHandshakeInterceptor;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +33,7 @@ public class WebsocketStompConf implements WebSocketMessageBrokerConfigurer {
                 // 自定义拦截器
                 .addInterceptors(new WebsocketHandshakeInterceptor())
                 // 自定义拦截处理，这里MyPrincipalHandshakeHandler 封装的认证用户信息
-//                .setHandshakeHandler(null)
+                .setHandshakeHandler(new MyPrincipalHandshakeHandler())
                 // 支持socketJS访问
                 .withSockJS();
     }
