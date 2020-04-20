@@ -1,6 +1,7 @@
 package com.zmg.pandaim.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.zmg.pandaim.manage.bean.WebsocketUserAuthentication;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -9,8 +10,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
-import org.springframework.stereotype.Controller;
-import com.zmg.pandaim.manage.bean.WebsocketUserAuthentication;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * @author Andy
  */
-@Controller
+@RestController
 @Slf4j
 public class WebsocketStompController {
 

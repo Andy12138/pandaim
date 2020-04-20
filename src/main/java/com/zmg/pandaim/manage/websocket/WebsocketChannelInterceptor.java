@@ -34,6 +34,9 @@ public class WebsocketChannelInterceptor implements ChannelInterceptor {
             log.info("认证用户:{}", user);
             log.info("页面传递令牌:{}", token);
         }
+        if (StompCommand.SEND.equals(accessor.getCommand())) {
+            log.info("发送消息命令");
+        }
         if (StompCommand.DISCONNECT.equals(accessor.getCommand())) {
             log.info("断开连接");
         }

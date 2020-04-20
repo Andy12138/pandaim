@@ -17,7 +17,6 @@ public class MyPrincipalHandshakeHandler extends DefaultHandshakeHandler {
 
     @Override
     protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
-
         HttpSession httpSession = getSession(request);
         // 获取登录的信息，就是controller 跳转页面存的信息，可以根据业务修改
         String user = (String)httpSession.getAttribute("loginName");

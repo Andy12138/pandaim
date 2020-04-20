@@ -1,8 +1,8 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="http://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
@@ -40,8 +40,8 @@
              * 4. heartbeat.outgoing 表示客户端给服务端发送心跳的间隔时间
              * 5. 客户端接收服务端心跳的间隔时间，如果为0 表示客户端不接收服务端心跳
              */
-            stompClient.heartbeat.outgoing = 10000;
-            stompClient.heartbeat.incoming = 0;
+            // stompClient.heartbeat.outgoing = 0;
+            // stompClient.heartbeat.incoming = 0;
 
             /*
              * 1. stompClient.connect(headers, connectCallback, errorCallback);
@@ -50,7 +50,8 @@
              * 3. connectCallback 表示连接成功时（服务器响应 CONNECTED 帧）的回调方法；
              *    errorCallback 表示连接失败时（服务器响应 ERROR 帧）的回调方法，非必须；
              */
-            var headers = {token:"熊猫的token"};
+            var sessionId = $("#session_id").val();
+            var headers = {token: sessionId};
 
             stompClient.connect(headers,function (frame) {
 
@@ -113,7 +114,7 @@
              *     可选参数,可以携带消息头信息，也可以做事务，如果没有，传{}
              *  3. body 为发送信息的 body，字符串，可选参数
              */
-            stompClient.send('${"/app/sendChatMsg/" + groupId}',{},JSON.stringify(data));
+            stompClient.send("/app/sendChatMsg/" + $("#groupId").val() ,{},JSON.stringify(data));
         }
 
         // 发送给自己
@@ -184,6 +185,9 @@
 <body>
 <div>
     <span>消息</span>
+    <input type="hidden" id="session_id" th:value="${session_id}">
+    <input type="hidden" id="groupId" th:value="${groupId}">
+    <input type="hidden" id="loginName" th:value="${loginName}">
     <input type="text" id="message" name="message">
     <input type="button" id="sendMsg" name="sendMsg" value="发送公告" onclick="sendMsg();">
     <input type="button" id="sendMsgOwn" name="sendMsgOwn" value="自己给自己推送" onclick="sendMsgOwn();">
